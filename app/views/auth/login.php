@@ -19,7 +19,7 @@
             <p class="text-sm mt-12 text-gray-800">Don't have an account <a href="signup" class="text-purple-600 font-semibold hover:underline ml-1">Register here</a></p>
           </div>
 
-          <form class="max-w-md md:ml-auto w-full">
+          <form class="max-w-md md:ml-auto w-full" action="login/getIn" method="POST">
             <h3 class="text-gray-800 text-3xl font-extrabold mb-8">
               Sign in
             </h3>
@@ -29,13 +29,13 @@
                 <input name="email" type="email" autocomplete="email" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent" placeholder="Email address" />
               </div>
               <div>
-                <input name="password" type="password" autocomplete="current-password" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent" placeholder="Password" />
+                <input name="pass" type="password" autocomplete="current-password" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent" placeholder="Password" />
               </div>
               
             </div>
 
             <div class="!mt-8">
-              <button type="button" class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-purple-600 hover:bg-purple-700 focus:outline-none">
+              <button type="submit" name="login" class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-purple-600 hover:bg-purple-700 focus:outline-none">
                 Log in
               </button>
             </div>
