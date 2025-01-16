@@ -7,12 +7,17 @@ CREATE TABLE users(
 	user_password VARCHAR(255),
 	user_role ENUM('admin','teacher','student')
 );
+INSERT INTO users(full_name, email, user_password, user_role) VALUES ("anas hammaoui","anas@gmail.com","12345678","teacher");
+INSERT INTO users(full_name, email, user_password, user_role) VALUES ("yassine","admin@gmail.com","12345678","admin");
 CREATE TABLE categories(
 	category_id int PRIMARY KEY AUTO_INCREMENT,
 	category_name VARCHAR(50),
 	admin_id INT,
 	FOREIGN KEY (admin_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+SELECT * FROM categories;
+INSERT INTO categories(category_name, admin_id)
+ VALUES ("web dev",6);
 CREATE TABLE courses(
 	course_id INT PRIMARY KEY AUTO_INCREMENT,
 	course_name VARCHAR(70),
@@ -35,3 +40,9 @@ CREATE TABLE coursTags(
 );
 ALTER TABLE courses
 ADD COLUMN thumbnail VARCHAR(255);
+INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("ahmed","document",5,3,"https://placehold.co/600x400");
+courses INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("dev from zero to hero","video",5,3,"https://placehold.co/600x400");
+ SELECT * from users;
+ SELECT * FROM courses;

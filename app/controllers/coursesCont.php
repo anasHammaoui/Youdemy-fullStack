@@ -7,14 +7,14 @@
             $this -> vidCoursesModel = new vidCourse();
         }
         public function allCourses(){
-            $docCourses = $this -> docCoursesModel -> allCourses();
-            $vidCourses = $this -> vidCoursesModel -> allCourses();
-            $allCourses = $docCourses;
-            foreach($vidCourses as $course){
-                array_push($allCourses,$course);
-            }
+            $docPage = isset($_GET["docPage"]) ? (int)$_GET["docPage"] : 1;
+            $docoffset = ($docPage - 1) * 2;
+            $vidPage = isset($_GET["vidPage"]) ? (int)$_GET["vidPage"] : 1;
+            $vidoffset = ($vidPage - 1) * 2;
+            $docCourses = $this -> docCoursesModel -> allCourses((int)$docoffset);
+            $vidCourses = $this -> vidCoursesModel -> allCourses((int)$vidoffset);
             // var_dump($docCourses,$vidCourses);
-            $this -> render("visitor/visitor",["allCourses"=> $allCourses]);
+            $this -> render("visitor/visitor",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"docPage"=>$docPage,"vidPage"=>$vidPage]);
         }
     }
 ?>

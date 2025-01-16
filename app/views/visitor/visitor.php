@@ -34,30 +34,76 @@
             </div>
         </div>
     </div>
-
-
-    <!-- All courses -->
+    <!-- video courses -->
     <div class="bg-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold mb-8">All courses</h2>
+            <h2 class="text-2xl font-bold mb-8">Video courses</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <?php
-                    foreach($allCourses as $course){?>
+                    foreach($vidCourses as $vidCourse){?>
                     <!-- Course Card 1 -->
                     <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="<?= $course["thumbnail"]; ?>" alt="<?= $course["course_name"];?>" class="w-full h-40 object-cover">
+                    <img src="<?= $vidCourse["thumbnail"]; ?>" alt="<?= $vidCourse["course_name"];?>" class="w-full h-40 object-cover">
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg mb-2"><?= $course["course_name"];?></h3>
-                        <p class="text-gray-600 text-sm mb-2"><?= $course["full_name"];?></p>
+                        <h3 class="font-semibold text-lg mb-2"><?= $vidCourse["course_name"];?></h3>
+                        <p class="text-gray-600 text-sm mb-2"><?= $vidCourse["full_name"];?></p>
                         <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
-                            <?= $course["course_type"]; ?>
+                            <?= $vidCourse["course_type"]; ?>
                         </p>
                     </div>
                 </div>
                   <?php  }
                 ?>
 
+            </div>
+             <!-- pagination  -->
+             <div class="pagination text-center w-full">
+            <?php
+        $total_pages = count($vidCourses); 
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $is_active = ($i == $vidPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
+            echo "<a href='?vidPage=$i' class='px-3 py-1 rounded-md text-sm mx-2 font-medium $is_active'>$i</a>";
+            
+        }
+        ?>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Document courses -->
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-8">Document courses</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <?php
+                    foreach($docCourses as $docCourse){?>
+                    <!-- Course Card 1 -->
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="<?= $docCourse["thumbnail"]; ?>" alt="<?= $docCourse["course_name"];?>" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2"><?= $docCourse["course_name"];?></h3>
+                        <p class="text-gray-600 text-sm mb-2"><?= $docCourse["full_name"];?></p>
+                        <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
+                            <?= $docCourse["course_type"]; ?>
+                        </p>
+                    </div>
+                </div>
+                  <?php  }
+                ?>
+
+            </div>
+            <!-- pagination  -->
+            <div class="pagination text-center w-full">
+            <?php
+        $total_pages = count($docCourses); 
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $is_active = ($i == $docPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
+            echo "<a href='?docPage=$i' class='px-3 py-1 rounded-md text-sm mx-2 font-medium $is_active'>$i</a>";
+            
+        }
+        ?>
             </div>
         </div>
     </div>

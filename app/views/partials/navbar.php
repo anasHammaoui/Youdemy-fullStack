@@ -4,7 +4,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-8">
                     <div class="flex items-center" style="width:140px">
-                        <img src="assets/img/logo.png" style="max-width:100%" alt="logo">
+                        <img src="/img/logo.png" style="max-width:100%" alt="logo">
                     </div>
                   
                 </div>
