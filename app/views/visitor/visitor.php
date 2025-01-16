@@ -35,32 +35,6 @@
         </div>
     </div>
 
-    <!-- Popular Categories -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 class="text-2xl font-bold mb-8">Top Categories</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-6-6 6 6 0 0 0-6 6c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                <h3 class="font-semibold text-lg mb-2">Development</h3>
-                <p class="text-gray-600">Python, Web Development, JavaScript</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                <h3 class="font-semibold text-lg mb-2">Business</h3>
-                <p class="text-gray-600">Finance, Marketing, Entrepreneurship</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-                <h3 class="font-semibold text-lg mb-2">IT & Software</h3>
-                <p class="text-gray-600">AWS, Cyber Security, Network</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <h3 class="font-semibold text-lg mb-2">Design</h3>
-                <p class="text-gray-600">UI/UX, Graphic Design, 3D</p>
-            </div>
-        </div>
-    </div>
 
     <!-- All courses -->
     <div class="bg-white py-16">
@@ -69,7 +43,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <?php
-                    var_dump($allCourses);
+                    foreach($allCourses as $course){?>
+                    <!-- Course Card 1 -->
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="<?= $course["thumbnail"]; ?>" alt="<?= $course["course_name"];?>" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2"><?= $course["course_name"];?></h3>
+                        <p class="text-gray-600 text-sm mb-2"><?= $course["full_name"];?></p>
+                        <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
+                            <?= $course["course_type"]; ?>
+                        </p>
+                    </div>
+                </div>
+                  <?php  }
                 ?>
 
             </div>
