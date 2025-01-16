@@ -3,7 +3,6 @@
         protected $courseModel;
         public function __construct(){
             parent::__construct();
-            $this -> courseModel = $this ->  connection;
         }
         abstract function allCourses();
     //   abstract function searchCourses();

@@ -13,14 +13,14 @@
       <div class="flex items-center mx-auto" style="width:200px">
                         <img src="assets/img/logo.png" style="max-width:100%" alt="logo">
                     </div>
-        <h4 class="text-gray-600 text-base ">Sign up into your account</h4>
+        <h4 class="text-gray-600 text-base ">Sign up to Youdemy</h4>
       </div>
 
-      <form>
+      <form action="signup/create" method="POST">
         <div class="grid gap-6">
           <div>
             <label class="text-gray-600 text-sm mb-2 block">Full Name</label>
-            <input name="lname" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" />
+            <input name="fName" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" />
           </div>
           <div>
             <label class="text-gray-600 text-sm mb-2 block">Email</label>
@@ -30,10 +30,17 @@
             <label class="text-gray-600 text-sm mb-2 block">Password</label>
             <input name="password" type="password" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter password" />
           </div>
+          <div>
+            <select name="role" class="w-full p-2 border border-blue focus::outline-none ">
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
         </div>
 
         <div class="mt-8">
-          <button type="button" class="mx-auto block py-3 px-6 text-sm tracking-wider rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+          <button type="submit" name="signUp" class="mx-auto block py-3 px-6 text-sm tracking-wider rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
             Sign up
           </button>
         </div>

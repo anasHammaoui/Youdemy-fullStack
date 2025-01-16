@@ -9,8 +9,10 @@
         public function allCourses(){
             $docCourses = $this -> docCoursesModel -> allCourses();
             $vidCourses = $this -> vidCoursesModel -> allCourses();
-            $allCourses = array_push($docCourses,$vidCourses);
-            var_dump($vidCourses);die();
+            $allCourses = $docCourses;
+            foreach($vidCourses as $course){
+                array_push($allCourses,$course);
+            }
             // var_dump($docCourses,$vidCourses);
             $this -> render("visitor/visitor",["allCourses"=> $allCourses]);
         }
