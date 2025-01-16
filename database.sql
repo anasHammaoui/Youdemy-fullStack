@@ -33,3 +33,5 @@ CREATE TABLE coursTags(
 	FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE,
 	FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
+ALTER TABLE courses
+ADD COLUMN thumbnail VARCHAR(255);

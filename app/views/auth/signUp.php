@@ -9,38 +9,26 @@
 </head>
 <body>
 <div class="max-w-4xl max-sm:max-w-lg mx-auto font-[sans-serif] p-6">
-      <div class="text-center mb-12 sm:mb-16">
-        <a href="javascript:void(0)"><img
-          src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-48 inline-block' />
-        </a>
-        <h4 class="text-gray-600 text-base mt-6">Sign up into your account</h4>
+      <div class="text-center mb-7 sm:mb-7">
+      <div class="flex items-center mx-auto" style="width:200px">
+                        <img src="assets/img/logo.png" style="max-width:100%" alt="logo">
+                    </div>
+        <h4 class="text-gray-600 text-base ">Sign up into your account</h4>
       </div>
 
       <form>
-        <div class="grid sm:grid-cols-2 gap-6">
+        <div class="grid gap-6">
           <div>
-            <label class="text-gray-600 text-sm mb-2 block">First Name</label>
-            <input name="name" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter name" />
-          </div>
-          <div>
-            <label class="text-gray-600 text-sm mb-2 block">Last Name</label>
+            <label class="text-gray-600 text-sm mb-2 block">Full Name</label>
             <input name="lname" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" />
           </div>
           <div>
-            <label class="text-gray-600 text-sm mb-2 block">Email Id</label>
+            <label class="text-gray-600 text-sm mb-2 block">Email</label>
             <input name="email" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter email" />
-          </div>
-          <div>
-            <label class="text-gray-600 text-sm mb-2 block">Mobile No.</label>
-            <input name="number" type="number" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter mobile number" />
           </div>
           <div>
             <label class="text-gray-600 text-sm mb-2 block">Password</label>
             <input name="password" type="password" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter password" />
-          </div>
-          <div>
-            <label class="text-gray-600 text-sm mb-2 block">Confirm Password</label>
-            <input name="cpassword" type="password" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter confirm password" />
           </div>
         </div>
 
