@@ -1,6 +1,5 @@
 <?php
     abstract class courses extends db {
-        protected $courseModel;
         public function __construct(){
             parent::__construct();
         }

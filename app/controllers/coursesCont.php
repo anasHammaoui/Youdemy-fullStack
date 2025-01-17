@@ -14,7 +14,7 @@
             $docCourses = $this -> docCoursesModel -> allCourses((int)$docoffset);
             $vidCourses = $this -> vidCoursesModel -> allCourses((int)$vidoffset);
             // var_dump($docCourses,$vidCourses);
-            $this -> render("visitor/visitor",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"docPage"=>$docPage,"vidPage"=>$vidPage]);
+            $this -> render("home",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"docPage"=>$docPage,"vidPage"=>$vidPage]);
         }
     }
 ?>

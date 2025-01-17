@@ -11,7 +11,9 @@
 
     <!-- navbar -->
      <?php include_once "../app/views/partials/navbar.php"; ?>
-    <!-- Hero Section -->
+    <?php
+        if (!isset($_SESSION["user_role"])){?>
+             <!-- Hero Section -->
     <div class="pt-16">
         <div class="relative bg-gray-900 h-[500px]">
             <div class="absolute inset-0">
@@ -34,10 +36,12 @@
             </div>
         </div>
     </div>
+       <?php }
+    ?>
     <!-- video courses -->
     <div class="bg-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold mb-8">Video courses</h2>
+            <h2 class="text-2xl font-bold my-8">Video courses</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <?php
@@ -58,7 +62,7 @@
 
             </div>
              <!-- pagination  -->
-             <div class="pagination text-center w-full">
+             <div class="pagination text-center w-full mt-2">
             <?php
         $total_pages = count($vidCourses); 
         for ($i = 1; $i <= $total_pages; $i++) {
@@ -85,9 +89,20 @@
                     <div class="p-4">
                         <h3 class="font-semibold text-lg mb-2"><?= $docCourse["course_name"];?></h3>
                         <p class="text-gray-600 text-sm mb-2"><?= $docCourse["full_name"];?></p>
+                        <div class="flex justify-between">
                         <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
                             <?= $docCourse["course_type"]; ?>
                         </p>
+                        <?php
+                            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){ ?>
+                             <form action="enroll" method="GET">
+                            <input type="text" value="<?= $docCourse["course_id"] ;?>" class="hidden" name="course_id">
+                            <input type="submit" value="Enroll" name="enroll" class="bg-blue-500 px-3 py-1 rounded cursor-pointer text-white hover:bg-blue-700 ">
+                        </form>
+
+                           <?php }
+                        ?>
+                        </div>
                     </div>
                 </div>
                   <?php  }
@@ -95,7 +110,7 @@
 
             </div>
             <!-- pagination  -->
-            <div class="pagination text-center w-full">
+            <div class="pagination text-center w-full mt-2">
             <?php
         $total_pages = count($docCourses); 
         for ($i = 1; $i <= $total_pages; $i++) {

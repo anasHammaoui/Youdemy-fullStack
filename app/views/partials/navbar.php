@@ -14,10 +14,19 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
+                <?php
+                    if (!isset($_SESSION["user_role"])){ ?>
+                        <div class="flex items-center space-x-4">
                     <a class="text-gray-600 hover:text-gray-900" href="signin">Log in</a>
                     <a class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700" href="signup">Sign up</a>
                 </div>
+                  <?php  } elseif (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student") { ?>
+                    <div class="flex items-center space-x-4">
+                    <a class="text-gray-600 hover:text-gray-900" href="myLearning">My Learning</a>
+                    <a class="text-gray-600 hover:text-gray-900" href="logout">Logout</a>
+                </div>
+                 <?php }
+                ?>
             </div>
         </div>
     </nav>

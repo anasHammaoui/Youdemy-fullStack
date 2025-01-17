@@ -11,7 +11,7 @@
 <div class="max-w-4xl max-sm:max-w-lg mx-auto font-[sans-serif] p-6">
       <div class="text-center mb-7 sm:mb-7">
       <div class="flex items-center mx-auto" style="width:200px">
-                        <img src="assets/img/logo.png" style="max-width:100%" alt="logo">
+                        <img src="/img/logo.png" style="max-width:100%" alt="logo">
                     </div>
         <h4 class="text-gray-600 text-base ">Sign up to Youdemy</h4>
       </div>

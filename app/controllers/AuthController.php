@@ -30,8 +30,8 @@
           $role = $_POST["role"];
         // check if signed up successfully 
           if ($this -> authModel -> signUp($Name,$Email,$Password,$role)){
-            $this -> render("auth/login");
-          } else {
+            header("location:/signin");
+        } else {
             echo "failed to sign up";
           }
     
@@ -49,7 +49,7 @@
                     $_SESSION["user_id"] = $userData["user_id"];
                     $_SESSION["user_role"] = $userData["user_role"];
                     if ($userData["user_role"] === "student"){
-                        echo "hello student";
+                       header("location:/");
                     } elseif ($userData["user_role"] === "teacher"){
                         echo "hello teacher";
                     } elseif ($userData["user_role"] === "admin"){
@@ -61,6 +61,11 @@
             }
 
         }
+    }
+    // log out function
+    function logOut(){
+        session_destroy();
+        $this -> render("auth/login"); 
     }
     }
 ?>
