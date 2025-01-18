@@ -14,8 +14,8 @@
 
     <!-- Course Header -->
     <div class="flex justify-center items-center h-screen bg-gray-900">
-        <div class=" text-white">
-            <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class=" text-white w-3/4 ">
+            <div class="max-w-7xl   py-12">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                         <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded"><?= $details["category_name"] ?></span>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="lg:pl-8">
-                        <div class="bg-white rounded-lg p-6 text-gray-900">
+                        <div class="bg-white rounded-lg w-50 p-6 text-gray-900">
                             <!-- <div class="aspect-w-16 aspect-h-9 mb-6">
                                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Course Preview" class="rounded-lg w-full">
                             </div> -->
@@ -43,7 +43,7 @@
                             if ($details["course_type"] === "video"){ ?>
                                 <video src="<?= $details["course_cdn"]?>" class="w-full" controls></video>
                            <?php } elseif ($details["course_type"] === "document"){?>
-                            <iframe src="https://docs.google.com/gview?url=<?= $details["course_cdn"]?>&embedded=true" class="w-full h-96" frameborder="0"></iframe>
+                            <iframe src="https://docs.google.com/gview?url=<?= $details["course_cdn"]?>&embedded=true" class="w-full h-96"></iframe>
                           <?php }
                          ?>
                         </div>

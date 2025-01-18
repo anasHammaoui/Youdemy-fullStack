@@ -40,6 +40,10 @@ CREATE TABLE tags(
 	tag_id INT PRIMARY KEY AUTO_INCREMENT,
 	tag_name varchar(20)
 );
+SELECT * FROM tags;
+INSERT INTO tags(tag_name) VALUE ("test");
+INSERT INTO tags(tag_name) VALUE ("dev");
+INSERT INTO tags(tag_name) VALUE ("web");
 CREATE TABLE coursTags(
 	tag_id INT,
 	course_id INT,
@@ -47,6 +51,9 @@ CREATE TABLE coursTags(
 	FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE,
 	FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
+INSERT INTO coursTags(tag_id,course_id) VALUE (1,16);
+INSERT INTO coursTags(tag_id,course_id) VALUE (2,16);
+INSERT INTO coursTags(tag_id,course_id) VALUE (3,16);
 ALTER TABLE courses
 ADD COLUMN thumbnail VARCHAR(255);
 INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
@@ -77,7 +84,15 @@ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  CHANGE course_cdn course_cdn TEXT;
  UPDATE courses
  SET course_desc = 'the best course in the world is ready to use';
- UPDATE courses
-	SET course_cdn = 'https://mp4-c.udemycdn.com/2023-07-01_08-36-26-10e6d09f5a18ac63c7354216693383e5/2/WebHD_720p.mp4?Expires=1737213556&Signature=7nQ9Cdo4ma3TBJxxLtmzoP17hljZY~7LF281Bl~lpmF5Se2t9WryZudcSz0ztG10p9px0KhH-kI831MF9Wcedc0i-8b5lRO-xXSYnTbQwIVLfzqWkr~13wfdS-UcN7peKi90B8PW7cO5uBiY8B17N6BGDmGi0Fuqv-aOgZFK18bm7kc-50lvWUEUyckoW5f9kdLKa5SPqQrY~f6~C0KxNuYYnt1xUZAFFVtA2MsdBmQROYJKz1xZx2HEzwbRLgxQ7QIBhZoD00hqwnNLAXmQkH9iX74F7Ofpv07cW2GPzjgE60Be5lpzzwZL8kgyrTWOJDMEMh3Ybxjko-vw3JNm4A__&Key-Pair-Id=K3MG148K9RIRF4' WHERE course_type = 'video';
-UPDATE courses
-SET course_cdn = 'https://icseindia.org/document/sample.pdf' WHERE course_type = 'document';
+ 
+SELECT distinct courses.course_name, courses.course_desc, courses.course_id, courses.course_type, courses.thumbnail, 
+       users.full_name, categories.category_name
+FROM courses
+INNER JOIN users ON users.user_id = courses.teacher_id
+INNER JOIN categories ON categories.category_id = courses.category_id
+JOIN coursTags ON coursTags.course_id = courses.course_id
+JOIN tags ON tags.tag_id = coursTags.tag_id
+WHERE tags.tag_name LIKE '%%' AND course_type = 'video'
+LIMIT 2 OFFSET 0;
+
+SELECT * FROM tags JOIN courstags JOIN courses ON courses.course_id = courstags.course_id;

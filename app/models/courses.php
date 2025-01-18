@@ -3,7 +3,7 @@
         public function __construct(){
             parent::__construct();
         }
-        abstract function allCourses($offset);
+        abstract function allCourses($offset,$search);
     //   abstract function searchCourses();
     //   abstract function studentCourses();
     //   abstract function addCourse();

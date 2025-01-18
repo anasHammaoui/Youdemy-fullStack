@@ -12,8 +12,10 @@ Route::setRouter($router);
 
 
 // Define routes
-// auth routes 
+// home page show all courses and search courses
 Route::get('/', [coursesCont::class, 'allCourses']);
+Route::get('/search', [coursesCont::class, 'allCourses']);
+// auth routes 
 Route::get('/signin', [authController::class, 'renderSignIn']);
 Route::get('/signup', [authController::class, 'renderSignUp']);
 Route::POST('/signup/create', [authController::class, 'signUp']);
