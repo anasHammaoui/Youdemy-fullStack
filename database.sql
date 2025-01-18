@@ -27,6 +27,15 @@ CREATE TABLE courses(
 	FOREIGN KEY (teacher_id) REFERENCES users(user_id) ON DELETE CASCADE,
 	FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
+CREATE TABLE enrollement(
+	enroll_id INT PRIMARY key AUTO_INCREMENT,
+	student_id INT, 
+	course_id INT,
+	enroll_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (student_id) REFERENCES users(user_id) ON DELETE CASCADE,
+	FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+);
+SELECT * FROM enrollement;
 CREATE TABLE tags(
 	tag_id INT PRIMARY KEY AUTO_INCREMENT,
 	tag_name varchar(20)
@@ -42,7 +51,21 @@ ALTER TABLE courses
 ADD COLUMN thumbnail VARCHAR(255);
 INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  VALUES("ahmed","document",5,3,"https://placehold.co/600x400");
-courses INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("dev from zero to hero","document",5,3,"https://placehold.co/600x400");
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("yasssin","document",5,3,"https://placehold.co/600x400");
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("moha","document",5,3,"https://placehold.co/600x400");
+ 
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("ahmed","video",5,3,"https://placehold.co/600x400");
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  VALUES("dev from zero to hero","video",5,3,"https://placehold.co/600x400");
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("yasssin","video",5,3,"https://placehold.co/600x400");
+ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
+ VALUES("moha","video",5,3,"https://placehold.co/600x400");
  SELECT * from users;
  SELECT * FROM courses;
+ DELETE FROM courses;

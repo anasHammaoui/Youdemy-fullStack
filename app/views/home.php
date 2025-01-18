@@ -52,9 +52,30 @@
                     <div class="p-4">
                         <h3 class="font-semibold text-lg mb-2"><?= $vidCourse["course_name"];?></h3>
                         <p class="text-gray-600 text-sm mb-2"><?= $vidCourse["full_name"];?></p>
+                        <div class="flex justify-between">
                         <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
                             <?= $vidCourse["course_type"]; ?>
                         </p>
+                        <?php
+                            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
+                            $isEnrolled = false;
+                                foreach($myEnrolls as $enrolled){
+                                    if ($vidCourse["course_id"] === $enrolled["course_id"]){
+                                        $isEnrolled = true;
+                                        break;
+                                    }
+                                }
+                                if ($isEnrolled) { ?>
+                                    <h1 class="bg-green-500 px-3 py-1 rounded text-white hover:bg-green-700 ">Enrolled</h1>
+                               <?php } else { ?>
+                                  <form action="enroll" method="GET">
+                            <input type="text" value="<?= $vidCourse["course_id"] ;?>" class="hidden" name="course_id">
+                            <input type="submit" value="Enroll" name="enroll" class="bg-blue-500 px-3 py-1 rounded cursor-pointer text-white hover:bg-blue-700 ">
+                        </form>
+                              <?php  }
+                          }
+                        ?>
+                        </div>
                     </div>
                 </div>
                   <?php  }
@@ -94,13 +115,23 @@
                             <?= $docCourse["course_type"]; ?>
                         </p>
                         <?php
-                            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){ ?>
-                             <form action="enroll" method="GET">
+                           if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
+                            $isEnrolled = false;
+                                foreach($myEnrolls as $enrolled){
+                                    if ($docCourse["course_id"] === $enrolled["course_id"]){
+                                        $isEnrolled = true;
+                                        break;
+                                    }
+                                }
+                                if ($isEnrolled) { ?>
+                                    <h1 class="bg-green-500 px-3 py-1 rounded text-white hover:bg-green-700 ">Enrolled</h1>
+                               <?php } else { ?>
+                                  <form action="enroll" method="GET">
                             <input type="text" value="<?= $docCourse["course_id"] ;?>" class="hidden" name="course_id">
                             <input type="submit" value="Enroll" name="enroll" class="bg-blue-500 px-3 py-1 rounded cursor-pointer text-white hover:bg-blue-700 ">
                         </form>
-
-                           <?php }
+                              <?php  }
+                          }
                         ?>
                         </div>
                     </div>
@@ -109,7 +140,6 @@
                 ?>
 
             </div>
-            <!-- pagination  -->
             <div class="pagination text-center w-full mt-2">
             <?php
         $total_pages = count($docCourses); 

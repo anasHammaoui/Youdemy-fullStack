@@ -22,6 +22,8 @@ Route::get('/logout', [authController::class, 'logOut']);
 
 // student routes
 Route::get('/enroll',[studentCont::class,'enrolled']);
+Route::get('/myLearning',[studentCont::class,'myLearning']);
+Route::get('/details',[studentCont::class,'courseDetails']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 

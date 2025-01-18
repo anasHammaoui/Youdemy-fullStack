@@ -4,9 +4,16 @@
             parent::__construct();
         }
         // enroll student
-        public function enrolled($idStudent, $idCourse){
+        public function enrollIn($idStudent, $idCourse){
         $courses = $this->connection->prepare("INSERT INTO enrollement(student_id,course_id) VALUES(?,?)");
-        return $courses->execute([$idStudent, $idCourse]);
+        $courses->execute([$idStudent, $idCourse]);
+    }
+    // student courses
+    public function getMyEnrolls($idUser)
+    {
+        $myCourses = $this->connection->prepare("SELECT * FROM courses inner join enrollement inner join users WHERE enrollement.student_id=? and courses.course_id = enrollement.course_id and courses.teacher_id = users.user_id");
+        $myCourses->execute([$idUser]);
+        return $myCourses->fetchAll(PDO::FETCH_ASSOC);
     }
     }
 ?>
