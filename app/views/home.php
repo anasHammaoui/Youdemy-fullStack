@@ -54,7 +54,7 @@
                         <p class="text-gray-600 text-sm mb-2"><?= $vidCourse["full_name"];?></p>
                         <div class="flex justify-between">
                         <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
-                            <?= $vidCourse["course_type"]; ?>
+                            <?= $vidCourse["category_name"]; ?>
                         </p>
                         <?php
                             if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
@@ -112,7 +112,7 @@
                         <p class="text-gray-600 text-sm mb-2"><?= $docCourse["full_name"];?></p>
                         <div class="flex justify-between">
                         <p class="text-indigo-500 font-medium text-sm bg-indigo-100 inline-block px-2 py-1 rounded">
-                            <?= $docCourse["course_type"]; ?>
+                            <?= $docCourse["category_name"]; ?>
                         </p>
                         <?php
                            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){

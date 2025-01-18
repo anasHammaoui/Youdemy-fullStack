@@ -22,7 +22,7 @@ CREATE TABLE courses(
 	course_id INT PRIMARY KEY AUTO_INCREMENT,
 	course_name VARCHAR(70),
 	course_type ENUM('video', 'document'),
-	teacher_id INT,
+	teacher_id	 INT,
 	category_id INT,
 	FOREIGN KEY (teacher_id) REFERENCES users(user_id) ON DELETE CASCADE,
 	FOREIGN KEY (category_id) REFERENCES categories(category_id)
@@ -69,3 +69,15 @@ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  SELECT * from users;
  SELECT * FROM courses;
  DELETE FROM courses;
+ ALTER TABLE courses 
+ ADD course_desc VARCHAR(255);
+ ALTER TABLE courses
+ ADD course_cdn VARCHAR(255);
+ ALTER TABLE courses
+ CHANGE course_cdn course_cdn TEXT;
+ UPDATE courses
+ SET course_desc = 'the best course in the world is ready to use';
+ UPDATE courses
+	SET course_cdn = 'https://mp4-c.udemycdn.com/2023-07-01_08-36-26-10e6d09f5a18ac63c7354216693383e5/2/WebHD_720p.mp4?Expires=1737213556&Signature=7nQ9Cdo4ma3TBJxxLtmzoP17hljZY~7LF281Bl~lpmF5Se2t9WryZudcSz0ztG10p9px0KhH-kI831MF9Wcedc0i-8b5lRO-xXSYnTbQwIVLfzqWkr~13wfdS-UcN7peKi90B8PW7cO5uBiY8B17N6BGDmGi0Fuqv-aOgZFK18bm7kc-50lvWUEUyckoW5f9kdLKa5SPqQrY~f6~C0KxNuYYnt1xUZAFFVtA2MsdBmQROYJKz1xZx2HEzwbRLgxQ7QIBhZoD00hqwnNLAXmQkH9iX74F7Ofpv07cW2GPzjgE60Be5lpzzwZL8kgyrTWOJDMEMh3Ybxjko-vw3JNm4A__&Key-Pair-Id=K3MG148K9RIRF4' WHERE course_type = 'video';
+UPDATE courses
+SET course_cdn = 'https://icseindia.org/document/sample.pdf' WHERE course_type = 'document';
