@@ -8,6 +8,15 @@
             $this -> vidCoursesModel = new vidCourse();
             $this -> enrollements = new Student();
         }
+          // vaidation inputs
+               // VALIDATION
+    function validateInputs($data){
+        $data = trim($data);
+        $data = htmlspecialchars($data);
+        $data = stripslashes($data);
+        return $data;
+    }
+        // show all courses to in home page
         public function allCourses(){
             // doc pagination
             $docPage = isset($_GET["docPage"]) ? (int)$_GET["docPage"] : 1;
@@ -33,7 +42,7 @@
                 $name = $this -> validateInputs($_GET["courseName"]);
                 $type = $this -> validateInputs($_GET["courseType"]);
                 $category = $this -> validateInputs($_GET["courseCat"]);
-                $tags = $this -> $_GET["courseTags"];
+                $tags = $_GET["courseTags"];
                 $description = $this -> validateInputs($_GET["courseDesc"]);
                 $cdn = $this -> validateInputs($_GET["courseCdn"]);
                 $thumb = $this -> validateInputs($_GET["courseThm"]);
@@ -53,13 +62,33 @@
                 }
             }
         }
-        // vaidation inputs
-               // VALIDATION
-    function validateInputs($data){
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        $data = stripslashes($data);
-        return $data;
-    }
+    //   edit courses for teachers
+        function editCourse(){
+            if (isset($_GET["editCourse"])){
+                $name = $this -> validateInputs($_GET["editName"]);
+                $type = $this -> validateInputs($_GET["editType"]);
+                $category = $this -> validateInputs($_GET["editCat"]);
+                $tags =  $_GET["editTags"];
+                $description = $this -> validateInputs($_GET["editDesc"]);
+                $cdn = $this -> validateInputs($_GET["editCdn"]);
+                $thumb = $this -> validateInputs($_GET["editThm"]);
+                $id = $this -> validateInputs($_GET["id-edit"]);
+                if ($type === "video") {
+                    if($this -> vidCoursesModel -> editCourse($name,$category,$tags,$description,$_SESSION["user_id"],$thumb,$cdn,(int)$id)){
+                        echo "edited with success";
+                        echo "<script>setTimeout(()=>{ window.location = '/teacher'},4000)</script>";
+                    } else {
+                        echo "failed to edit course";
+                    }
+                } elseif($type === "document"){
+                    if($this -> docCoursesModel -> editCourse($name,$category,$tags,$description,$_SESSION["user_id"],$thumb,$cdn,(int)$id)){
+                        echo "edited with success";
+                        echo "<script>setTimeout(()=>{ window.location = '/teacher'},4000)</script>";
+                     } else {
+                         echo "failed to edit course";
+                     }
+                }
+            }
+        }
     }
 ?>

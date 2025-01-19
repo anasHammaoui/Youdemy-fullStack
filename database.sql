@@ -44,6 +44,8 @@ SELECT * FROM tags;
 INSERT INTO tags(tag_name) VALUE ("test");
 INSERT INTO tags(tag_name) VALUE ("dev");
 INSERT INTO tags(tag_name) VALUE ("web");
+INSERT INTO tags(tag_name) VALUE ("zero");
+INSERT INTO tags(tag_name) VALUE ("yassin");
 CREATE TABLE coursTags(
 	tag_id INT,
 	course_id INT,
@@ -51,8 +53,8 @@ CREATE TABLE coursTags(
 	FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE,
 	FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
-INSERT INTO coursTags(tag_id,course_id) VALUE (1,16);
-INSERT INTO coursTags(tag_id,course_id) VALUE (2,16);
+INSERT INTO coursTags(tag_id,course_id) VALUE (5,15);
+INSERT INTO coursTags(tag_id,course_id) VALUE (4,14);
 INSERT INTO coursTags(tag_id,course_id) VALUE (3,16);
 ALTER TABLE courses
 ADD COLUMN thumbnail VARCHAR(255);
@@ -73,8 +75,10 @@ INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  VALUES("yasssin","video",5,3,"https://placehold.co/600x400");
  INSERT INTO courses(course_name,course_type,teacher_id,category_id,thumbnail)
  VALUES("moha","video",5,3,"https://placehold.co/600x400");
+ 
  SELECT * from users;
- SELECT * FROM courses;
+ SELECT distinct * FROM courses JOIN tags;
+ 
  DELETE FROM courses;
  ALTER TABLE courses 
  ADD course_desc VARCHAR(255);
@@ -96,3 +100,10 @@ WHERE tags.tag_name LIKE '%%' AND course_type = 'video'
 LIMIT 2 OFFSET 0;
 
 SELECT * FROM tags JOIN courstags JOIN courses ON courses.course_id = courstags.course_id;
+SELECT * FROM users;
+SELECT * FROM courses;
+SELECT * from courstags;
+
+SELECT courses.course_name,courses.thumbnail, categories.category_name, COUNT(enrollement.student_id) as students 
+from courses join categories on courses.category_id = categories.category_id
+ left join enrollement on enrollement.course_id = courses.course_id where teacher_id = 5 group by courses.course_id

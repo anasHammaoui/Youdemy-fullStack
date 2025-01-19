@@ -46,5 +46,26 @@ class vidCourse extends courses {
         }
 
     }
+      // Edit course for teacher
+      function editCourse($name,$catId,$tags,$desc, $teacher,$thumb,$cdn, $id ){
+        try{
+            $this -> connection -> beginTransaction();
+            // insert course in courses table
+            $addToCourse = $this -> connection -> prepare("UPDATE COURSES SET course_name = ? ,course_type = 'video',teacher_id = ?,category_id = ?, course_desc = ? ,thumbnail = ?,course_cdn = ? where course_id = ?");
+            $addToCourse -> execute([$name,(int)$teacher,(int)$catId,$desc,$thumb,$cdn,$id]);
+            // insert tags in tags table
+            foreach($tags as $tag){
+                $tag = (int)$tag;
+                $addToCoursTags = $this -> connection -> prepare("UPDATE coursTags SET tag_id = ? where course_id = ? ");
+                $addToCoursTags -> execute([$tag,$id]);
+            }
+            $this -> connection -> commit();
+            return true;
+        } catch(Exception){
+            $this -> connection -> rollBack();
+             return false;
+        }
+
+    }
 }
 ?>

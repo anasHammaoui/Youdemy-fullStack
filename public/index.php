@@ -29,6 +29,7 @@ Route::get('/details',[studentCont::class,'courseDetails']);
 // teacher routes
 Route::get('/teacher',[teacherCont::class,'dashboard']);
 Route::get('/addcourse',[coursesCont::class,'addCourse']);
+Route::get('/editcourse',[coursesCont::class,'editCourse']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
