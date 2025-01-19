@@ -8,7 +8,8 @@
             if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "teacher" ){
                 $cats = $this -> teacherModel -> getCategories();
             $tags = $this -> teacherModel -> getTags();
-            $this ->  render("instructor/teacherDash", ["cats"=>$cats, "tags" => $tags]);
+            $teacherCourses = $this -> teacherModel -> teacherCourses((int)$_SESSION["user_id"]);
+            $this ->  render("instructor/teacherDash", ["cats"=>$cats, "tags" => $tags, "courses" => $teacherCourses]);
             }
         }
     

@@ -1,7 +1,5 @@
     <?php
-        if (isset($_GET["addCourse"])){
-            var_dump($_GET["courseTags"]);die;
-        }
+        var_dump($courses);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,15 +46,26 @@
                     <form class="p-4 md:p-5" action="addcourse" method="get">
                        <!-- course content -->
                        <div class="grid gap-4 mb-4 grid-cols-2">
+                        <!-- course name -->
                     <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course Name</label>
                         <input type="text" name="courseName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Type course name" required="">
+                    </div>
+                        <!-- course cdn -->
+                    <div class="col-span-2">
+                        <label for="cdn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course CDN</label>
+                        <input type="text" name="courseCdn" id="cdn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Enter course cdn" required="">
+                    </div>
+                        <!-- course Thumbnail -->
+                    <div class="col-span-2">
+                        <label for="Thumbnail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course Thumbnail</label>
+                        <input type="text" name="courseThm" id="Thumbnail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Enter course Thumbnail" required="">
                     </div>
                     <!-- course type  -->
                     <div class="col-span-2 sm:col-span-1">
                         <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content type</label>
                         <select id="type" name="courseType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
-                            <option selected="video">Video</option>
+                            <option selected="video" value="video">Video</option>
                             <option value="document">Document</option>
                         </select>
                     </div>
@@ -75,7 +84,7 @@
                     <!-- tags -->
                     <div class="col-span-2">
                     <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tags</label>
-                        <select id="tags" name="courseTags[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                        <select id="tags" name="courseTags[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required multiple>
                         <!-- categories -->
                              <?php
                                 foreach ($tags as $tag){ ?>
@@ -130,26 +139,31 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
+            <!-- show courses  -->
+           <?php
+            foreach($courses as $course){ ?>
+                 <tr>
               <td class="px-6 py-4">
                 <div class="flex items-center">
                   <div class="h-10 w-10 flex-shrink-0">
-                    <img class="h-10 w-10 rounded object-cover" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="">
+                    <img class="h-10 w-10 rounded object-cover" src="<?= $course["thumbnail"];?>" alt="">
                   </div>
                   <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900">JavaScript Fundamentals</div>
-                    <div class="text-sm text-gray-500">Web Development</div>
+                    <div class="text-sm font-medium text-gray-900"><?= $course["course_name"];?></div>
+                    <div class="text-sm text-gray-500"><?= $course["category_name"];?></div>
                   </div>
                 </div>
               </td>
               <td class="px-6 py-4">
-                <div class="text-sm text-gray-900">150</div>
+                <div class="text-sm text-gray-900"><?= $course["students"];?></div>
               </td>
               <td class="px-6 py-4 text-sm font-medium">
                 <button class="text-indigo-600 hover:text-indigo-900 mr-3">✏️</button>
                 <button class="text-red-600 hover:text-red-900">🗑️</button>
               </td>
             </tr>
+          <?php  }
+           ?>
           </tbody>
         </table>
       </div>

@@ -30,13 +30,36 @@
         // add courses for teachers
         public function addCourse(){
             if (isset($_GET["addCourse"])){
-                $name = $_GET["courseName"];
-                $type = $_GET["courseType"];
-                $category = $_GET["courseCat"];
-                $tags = $_GET["courseTags"];
-                $description = $_GET["courseDesc"];
-                var_dump($name,$type,$category,$tags,$description);
+                $name = $this -> validateInputs($_GET["courseName"]);
+                $type = $this -> validateInputs($_GET["courseType"]);
+                $category = $this -> validateInputs($_GET["courseCat"]);
+                $tags = $this -> $_GET["courseTags"];
+                $description = $this -> validateInputs($_GET["courseDesc"]);
+                $cdn = $this -> validateInputs($_GET["courseCdn"]);
+                $thumb = $this -> validateInputs($_GET["courseThm"]);
+                
+                if ($type === "video") {
+                    if($this -> vidCoursesModel -> addCourse($name,$category,$tags,$description,$_SESSION["user_id"],$thumb,$cdn)){
+                       header("location:/teacher");
+                    } else {
+                        echo "failed to add course";
+                    }
+                } elseif($type === "document"){
+                    if($this -> docCoursesModel -> addCourse($name,$category,$tags,$description,$_SESSION["user_id"],$thumb,$cdn)){
+                        header("location:/teacher");
+                     } else {
+                         echo "failed to add course";
+                     }
+                }
             }
         }
+        // vaidation inputs
+               // VALIDATION
+    function validateInputs($data){
+        $data = trim($data);
+        $data = htmlspecialchars($data);
+        $data = stripslashes($data);
+        return $data;
+    }
     }
 ?>

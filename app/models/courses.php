@@ -4,7 +4,7 @@
             parent::__construct();
         }
         abstract function allCourses($offset,$search);
-        abstract function addCourse($name,$catId,$tags,$desc, $teacher);
+        abstract function addCourse($name,$catId,$tags,$desc, $teacher,$thumb,$cdn);
     //   abstract function searchCourses();
     //   abstract function studentCourses();
     //   abstract function addCourse();

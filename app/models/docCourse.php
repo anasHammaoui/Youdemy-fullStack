@@ -26,12 +26,12 @@ LIMIT 2 OFFSET :offset");
         return $details -> fetch(PDO::FETCH_ASSOC);
     }
     // add course for teacher
-    function addCourse($name,$catId,$tags,$desc, $teacher){
+    function addCourse($name,$catId,$tags,$desc, $teacher,$thumb,$cdn){
         try{
             $this -> connection -> beginTransaction();
             // insert course in courses table
-            $addToCourse = $this -> connection -> prepare("INSERT INTO COURSES(course_name,course_type,teacher_id,category_id, course_desc) VALUES (?, 'document',?,?,?)");
-            $addToCourse -> execute([$name,$teacher,$catId,$desc]);
+            $addToCourse = $this -> connection -> prepare("INSERT INTO COURSES(course_name,course_type,teacher_id,category_id, course_desc,thumbnail,course_cdn) VALUES (?, 'document',?,?,?,?,?)");
+            $addToCourse -> execute([$name,(int)$teacher,(int)$catId,$desc,$thumb,$cdn]);
             $courseId = $this -> connection -> lastInsertId();
             // insert tags in tags table
             foreach($tags as $tag){
@@ -40,6 +40,7 @@ LIMIT 2 OFFSET :offset");
                 $addToCoursTags -> execute([$tag,$courseId]);
             }
             $this -> connection -> commit();
+            return true;
         } catch(Exception){
             $this -> connection -> rollBack();
              return false;
