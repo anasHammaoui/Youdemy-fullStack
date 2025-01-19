@@ -1,6 +1,3 @@
-    <?php
-        var_dump($courses);
-    ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -124,7 +121,7 @@
         </div>
         <div class="bg-white rounded-lg shadow p-6">
           <div class="text-gray-500 text-sm">Total courses</div>
-          <div class="text-2xl font-bold text-gray-900">3</div>
+          <div class="text-2xl font-bold text-gray-900"><?= $total["total"];?></div>
         </div>
       </div>
 

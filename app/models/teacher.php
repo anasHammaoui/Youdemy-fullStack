@@ -16,5 +16,12 @@
             $courses -> execute([$id]);
             return $courses -> fetchAll(PDO::FETCH_ASSOC);
         }
+        // get total courses
+        // function total courses by teacher 
+        function totalTeacherCourses($id){
+            $total = $this -> connection -> prepare("SELECT count(course_id) as total from courses where teacher_id = ?");
+            $total -> execute([$id]);
+            return $total -> fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>
