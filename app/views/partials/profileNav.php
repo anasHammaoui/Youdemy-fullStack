@@ -1,5 +1,5 @@
  <!-- Navigation -->
- <nav class="bg-white border-b border-gray-200 fixed w-full z-50">
+ <nav class="bg-white border-b border-gray-200 w-full ">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-8">

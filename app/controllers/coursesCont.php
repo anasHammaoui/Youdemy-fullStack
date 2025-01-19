@@ -27,5 +27,16 @@
             // var_dump($docCourses,$vidCourses);
             $this -> render("home",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"docPage"=>$docPage,"vidPage"=>$vidPage,"myEnrolls"=>$myEnrolls]);
         }
+        // add courses for teachers
+        public function addCourse(){
+            if (isset($_GET["addCourse"])){
+                $name = $_GET["courseName"];
+                $type = $_GET["courseType"];
+                $category = $_GET["courseCat"];
+                $tags = $_GET["courseTags"];
+                $description = $_GET["courseDesc"];
+                var_dump($name,$type,$category,$tags,$description);
+            }
+        }
     }
 ?>

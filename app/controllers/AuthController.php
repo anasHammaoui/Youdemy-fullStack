@@ -51,7 +51,7 @@
                     if ($userData["user_role"] === "student"){
                        header("location:/");
                     } elseif ($userData["user_role"] === "teacher"){
-                        echo "hello teacher";
+                        header("location:/teacher");
                     } elseif ($userData["user_role"] === "admin"){
                         echo "hello admin";
                     }

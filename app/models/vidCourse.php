@@ -24,5 +24,26 @@ class vidCourse extends courses {
         $details -> execute([$course_id]);
         return $details -> fetch(PDO::FETCH_ASSOC);
     }
+     // add course for teacher
+     function addCourse($name,$catId,$tags,$desc, $teacher){
+        try{
+            $this -> connection -> beginTransaction();
+            // insert course in courses table
+            $addToCourse = $this -> connection -> prepare("INSERT INTO COURSES(course_name,course_type,teacher_id,category_id, course_desc) VALUES (?, 'video',?,?,?)");
+            $addToCourse -> execute([$name,$teacher,$catId,$desc]);
+            $courseId = $this -> connection -> lastInsertId();
+            // insert tags in tags table
+            foreach($tags as $tag){
+                $tag = (int)$tag;
+                $addToCoursTags = $this -> connection -> prepare("INSERT INTO coursTags(tag_id,course_id) VALUES (?,?)");
+                $addToCoursTags -> execute([$tag,$courseId]);
+            }
+            $this -> connection -> commit();
+        } catch(Exception){
+            $this -> connection -> rollBack();
+             return false;
+        }
+
+    }
 }
 ?>
