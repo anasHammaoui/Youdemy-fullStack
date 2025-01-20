@@ -47,5 +47,15 @@
         $topTeachers->execute();
         return( $topTeachers->fetch(PDO::FETCH_ASSOC));
     }
+    // accept teacher
+    public function approveTeacher($id){
+        $approve = $this->connection->prepare("UPDATE users SET user_status = 'accepted' WHERE users.user_id = ?");
+         $approve->execute([$id]);
+    }
+    //reject teacher
+    public function rejectTeacher($id) {
+        $reject = $this->connection->prepare("DELETE FROM users WHERE user_id = ?");
+         $reject->execute([$id]);
+    }
     }
 ?>

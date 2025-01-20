@@ -66,7 +66,7 @@
             <div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-gray-100">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-bold text-gray-900">Pending Teacher Approvals</h3>
-                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium text-sm">View All</a>
+                    <a href="teacherRequests" class="text-blue-600 hover:text-blue-700 font-medium text-sm">View All</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">

@@ -36,6 +36,8 @@ Route::get('/acceptStudents',[teacherCont::class,'acceptEnroll']);
 Route::get('/declineStudent',[teacherCont::class,'declineEnroll']);
 // admin routes
 Route::get('/admin',[adminCont::class,'dashboard']);
+Route::get('/teacherRequests',[adminCont::class,'teachersRequests']);
+Route::get('/status',[adminCont::class,'teachersStatus']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
