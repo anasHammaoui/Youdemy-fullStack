@@ -10,18 +10,18 @@
              $data = $this->adminModel->getAdminData($adminId); 
              $numCourses = $this->adminModel->getCoursesNum();
              $pendingTeachers = $this->adminModel->getPendingTeachers();
-            //  $pendingTeachersDetails = $this->adminModel->getPendingTeachersDetails();
+             $pendingTeachersDetails = $this->adminModel->getPendingTeachersDetails();
              $categoriesNum = $this->adminModel->getCategoriesNum();
-            //  $lastThreeTeachers = $this->adminModel->lastThreeTeachers();
-            //  $lastThreeCourses = $this->adminModel->lastThreeCourses();
+             $topThreeTeachers = $this->adminModel->topThreeTeachers();
+             $topCourse = $this->adminModel->topCourse();
              $this->render('admin/admin', [
-                //  "pteachers" => $pendingTeachersDetails,
+                 "pteachers" => $pendingTeachersDetails,
                  "categoryNum" => $categoriesNum,
                  "pendingTeachers" => $pendingTeachers,
                  "courseNum" => $numCourses,
                  "admin" => $data,
-                //  "lastTeachers" => $lastThreeTeachers,
-                //  "lastCourses" => $lastThreeCourses
+                 "topTeachers" => $topThreeTeachers,
+                 "topCourse" => $topCourse
              ]);
         }
     }
