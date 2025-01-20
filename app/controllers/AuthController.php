@@ -53,8 +53,10 @@
                     } elseif ($userData["user_role"] === "teacher"){
                         header("location:/teacher");
                     } elseif ($userData["user_role"] === "admin"){
-                        echo "hello admin";
+                        header("location:/admin");
                     }
+                } else {
+                    echo "invalid password";
                 }
             } else {
                 echo "invalid email";

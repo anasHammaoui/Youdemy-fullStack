@@ -34,6 +34,8 @@ Route::get('/delete-course',[coursesCont::class,'deleteCourse']);
 Route::get('/courseStudents',[teacherCont::class,'requests']);
 Route::get('/acceptStudents',[teacherCont::class,'acceptEnroll']);
 Route::get('/declineStudent',[teacherCont::class,'declineEnroll']);
+// admin routes
+Route::get('/admin',[adminCont::class,'dashboard']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
