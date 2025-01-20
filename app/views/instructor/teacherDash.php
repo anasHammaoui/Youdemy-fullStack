@@ -18,10 +18,15 @@
       <div class="flex justify-between items-center mb-8">
         <h1 class="text-3xl font-bold text-gray-900">My Courses</h1>
                 <!-- add courses -->
-        <!-- Modal toggle -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700" type="button">
+       <div class="flex flex-end">
+         <!-- Modal toggle -->
+         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-indigo-600 mr-2 text-white px-4 py-2 rounded-lg hover:bg-indigo-700" type="button">
         Add New Course
         </button>
+        <a href="courseStudents"  class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+        Enrollement Requests
+        </a>
+       </div>
 
         <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
