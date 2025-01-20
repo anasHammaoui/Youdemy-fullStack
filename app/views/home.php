@@ -58,21 +58,26 @@
                         </p>
                         <?php
                             if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
-                            $isEnrolled = false;
+                            $isEnrolled = 0;
                                 foreach($myEnrolls as $enrolled){
-                                    if ($vidCourse["course_id"] === $enrolled["course_id"]){
-                                        $isEnrolled = true;
+                                    if ($vidCourse["course_id"] === $enrolled["course_id"] && $enrolled["enroll_status"] === "accepted" ){
+                                        $isEnrolled = 1;
+                                        break;
+                                    } elseif ($vidCourse["course_id"] === $enrolled["course_id"] && $enrolled["enroll_status"] === "pending" ){
+                                        $isEnrolled = 2;
                                         break;
                                     }
                                 }
-                                if ($isEnrolled) { ?>
+                                if ($isEnrolled === 1) { ?>
                                     <h1 class="bg-green-500 px-3 py-1 rounded text-white hover:bg-green-700 ">Enrolled</h1>
-                               <?php } else { ?>
+                               <?php } elseif ($isEnrolled ===  0) { ?>
                                   <form action="enroll" method="GET">
                             <input type="text" value="<?= $vidCourse["course_id"] ;?>" class="hidden" name="course_id">
                             <input type="submit" value="Enroll" name="enroll" class="bg-blue-500 px-3 py-1 rounded cursor-pointer text-white hover:bg-blue-700 ">
                         </form>
-                              <?php  }
+                              <?php  } else{?>
+                                <h1 class="bg-orange-500 px-3 py-1 rounded text-white hover:bg-orange-700 ">Pending</h1>
+                             <?php }
                           }
                         ?>
                         </div>
@@ -116,22 +121,27 @@
                             <?= $docCourse["category_name"]; ?>
                         </p>
                         <?php
-                           if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
-                            $isEnrolled = false;
+                            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student"){
+                            $isEnrolled = 0;
                                 foreach($myEnrolls as $enrolled){
-                                    if ($docCourse["course_id"] === $enrolled["course_id"]){
-                                        $isEnrolled = true;
+                                    if ($docCourse["course_id"] === $enrolled["course_id"] && $enrolled["enroll_status"] === "accepted" ){
+                                        $isEnrolled = 1;
+                                        break;
+                                    } elseif ($docCourse["course_id"] === $enrolled["course_id"] && $enrolled["enroll_status"] === "pending" ){
+                                        $isEnrolled = 2;
                                         break;
                                     }
                                 }
-                                if ($isEnrolled) { ?>
+                                if ($isEnrolled === 1) { ?>
                                     <h1 class="bg-green-500 px-3 py-1 rounded text-white hover:bg-green-700 ">Enrolled</h1>
-                               <?php } else { ?>
+                               <?php } elseif ($isEnrolled ===  0) { ?>
                                   <form action="enroll" method="GET">
                             <input type="text" value="<?= $docCourse["course_id"] ;?>" class="hidden" name="course_id">
                             <input type="submit" value="Enroll" name="enroll" class="bg-blue-500 px-3 py-1 rounded cursor-pointer text-white hover:bg-blue-700 ">
                         </form>
-                              <?php  }
+                              <?php  } else{?>
+                                <h1 class="bg-orange-500 px-3 py-1 rounded text-white hover:bg-orange-700 ">Pending</h1>
+                             <?php }
                           }
                         ?>
                         </div>
