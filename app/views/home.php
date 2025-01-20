@@ -85,9 +85,10 @@
              <!-- pagination  -->
              <div class="pagination text-center w-full mt-2">
             <?php
-        $total_pages = count($vidCourses); 
+        $total_pages = ceil($total_vids["total_vids"]/ 4);
+        $currentPage = isset($_GET['vidPage']) ? (int)$_GET['vidPage'] : 1; 
         for ($i = 1; $i <= $total_pages; $i++) {
-            $is_active = ($i == $vidPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
+            $is_active = ($i == $currentPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
             echo "<a href='?vidPage=$i' class='px-3 py-1 rounded-md text-sm mx-2 font-medium $is_active'>$i</a>";
             
         }
@@ -142,9 +143,10 @@
             </div>
             <div class="pagination text-center w-full mt-2">
             <?php
-        $total_pages = count($docCourses); 
+        $total_pages = ceil($total_docs["total_docs"]/ 4); 
+        $currentPage = isset($_GET['docPage']) ? (int)$_GET['docPage'] : 1;
         for ($i = 1; $i <= $total_pages; $i++) {
-            $is_active = ($i == $docPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
+            $is_active = ($i == $currentPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';
             echo "<a href='?docPage=$i' class='px-3 py-1 rounded-md text-sm mx-2 font-medium $is_active'>$i</a>";
             
         }

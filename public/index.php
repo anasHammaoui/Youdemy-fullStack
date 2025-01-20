@@ -30,6 +30,7 @@ Route::get('/details',[studentCont::class,'courseDetails']);
 Route::get('/teacher',[teacherCont::class,'dashboard']);
 Route::get('/addcourse',[coursesCont::class,'addCourse']);
 Route::get('/editcourse',[coursesCont::class,'editCourse']);
+Route::get('/delete-course',[coursesCont::class,'deleteCourse']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 

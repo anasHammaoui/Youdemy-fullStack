@@ -27,7 +27,12 @@
                     <a class="text-gray-600 hover:text-gray-900" href="myLearning">My Learning</a>
                     <a class="text-gray-600 hover:text-gray-900" href="logout">Logout</a>
                 </div>
-                 <?php }
+                 <?php } elseif (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "teacher") { ?>
+                    <div class="flex items-center space-x-4">
+                    <a class="text-gray-600 hover:text-gray-900" href="teacher">Dashboard</a>
+                    <a class="text-gray-600 hover:text-gray-900" href="logout">Logout</a>
+                </div>
+                <?php }
                 ?>
             </div>
         </div>

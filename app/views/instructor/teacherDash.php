@@ -117,10 +117,6 @@
 
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-          <div class="text-gray-500 text-sm">Total Revenue</div>
-          <div class="text-2xl font-bold text-gray-900">$21,947</div>
-        </div>
-        <div class="bg-white rounded-lg shadow p-6">
           <div class="text-gray-500 text-sm">Total courses</div>
           <div class="text-2xl font-bold text-gray-900"><?= $total["total"];?></div>
         </div>
@@ -157,7 +153,7 @@
               </td>
               <td class="px-6 py-4 text-sm font-medium">
                 <button class="text-indigo-600 hover:text-indigo-900 mr-3 students" data-modal-target="students" data-modal-toggle="students" data-id="<?= $course["course_id"] ?>">✏️</button>
-                <button class="text-red-600 hover:text-red-900 mr-3">🗑️</button>
+                <a href="delete-course?id=<?=$course["course_id"];?>&type=<?=$course["course_type"]?>" class="text-red-600 hover:text-red-900 mr-3">🗑️</a >
                 <button class="text-red-600 hover:text-red-900" >👨🏻‍🎓</button>
               </td>
             </tr>

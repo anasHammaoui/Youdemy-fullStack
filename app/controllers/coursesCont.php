@@ -20,21 +20,25 @@
         public function allCourses(){
             // doc pagination
             $docPage = isset($_GET["docPage"]) ? (int)$_GET["docPage"] : 1;
-            $docoffset = ($docPage - 1) * 2;
+            $docoffset = ($docPage - 1) * 4;
             // vid pagination
             $vidPage = isset($_GET["vidPage"]) ? (int)$_GET["vidPage"] : 1;
-            $vidoffset = ($vidPage - 1) * 2;
+            $vidoffset = ($vidPage - 1) * 4;
             // search
             $search = (isset($_GET["search"]) && !empty($_GET["search"])  )? $_GET["search"] : NULL;
             // render data
             $docCourses = $this -> docCoursesModel -> allCourses((int)$docoffset,$search);
             $vidCourses = $this -> vidCoursesModel -> allCourses((int)$vidoffset,$search);
+            // total records for pagination
+            $total_vids = $this -> vidCoursesModel -> total_vidCourses() ;
+            $total_docs = $this -> docCoursesModel -> total_docCourses()  ;
+            // my enrolls
             $myEnrolls = [];
             if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student") {
                 $myEnrolls = $this -> enrollements -> getMyEnrolls((int)$_SESSION["user_id"]);
             }
             // var_dump($docCourses,$vidCourses);
-            $this -> render("home",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"docPage"=>$docPage,"vidPage"=>$vidPage,"myEnrolls"=>$myEnrolls]);
+            $this -> render("home",["docCourses"=> $docCourses,"vidCourses"=> $vidCourses,"myEnrolls"=>$myEnrolls, "total_vids" => $total_vids, "total_docs" => $total_docs]);
         }
         // add courses for teachers
         public function addCourse(){
@@ -88,6 +92,29 @@
                          echo "failed to edit course";
                      }
                 }
+            }
+        }
+        // delete course for teachers
+        function deleteCourse() {
+            if ( $_SESSION["user_role"] === "teacher" ) {
+                if ($_GET["type"] === "document") {
+                   if ( $this -> docCoursesModel -> deleteCourse((int)$_GET["id"])){
+                    header("location:/teacher");
+                    exit();
+                   }  else {
+                    echo "failed to edit";
+                    echo "<a href='teacher'>Go to Dashboard</a>";
+                }
+                } elseif($_GET["type"] === "video"){
+                    if ( $this -> vidCoursesModel -> deleteCourse((int)$_GET["id"])){
+                        header("location:/teacher");
+                        exit();
+                       }  else {
+                        echo "failed to edit";
+                        echo "<a href='teacher'>Go to Dashboard</a>";
+                    }
+                }
+                
             }
         }
     }

@@ -6,6 +6,7 @@
         abstract function allCourses($offset,$search);
         abstract function addCourse($name,$catId,$tags,$desc, $teacher,$thumb,$cdn);
         abstract function editCourse($name,$catId,$tags,$desc, $teacher,$thumb,$cdn,$id);
+       abstract function deleteCourse($id);
     //   abstract function searchCourses();
     //   abstract function studentCourses();
     //   abstract function addCourse();

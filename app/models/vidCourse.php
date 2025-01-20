@@ -9,7 +9,7 @@ class vidCourse extends courses {
     left JOIN coursTags ON coursTags.course_id = courses.course_id
     left JOIN tags ON tags.tag_id = coursTags.tag_id
     WHERE ((tags.tag_name LIKE :search or :emptySearch is null)  AND course_type = 'video')
-    LIMIT 2 OFFSET :offset");
+    LIMIT 4 OFFSET :offset");
             $searchLike = "%$search%";
             $getAllDocCourses -> bindValue(":search",$searchLike);
             $getAllDocCourses -> bindValue(":emptySearch",$search);
@@ -17,6 +17,11 @@ class vidCourse extends courses {
             $getAllDocCourses -> execute();
             $getDocs = $getAllDocCourses -> fetchAll(PDO::FETCH_ASSOC);
             return $getDocs;
+    }
+    function total_vidCourses(){
+        $total = $this -> connection -> prepare("SELECT COUNT(course_id) as total_vids from courses where course_type = 'document'");
+        $total -> execute();
+        return $total -> fetch(PDO::FETCH_ASSOC);
     }
     // course details
     public function getCourseDetails($course_id){
@@ -66,6 +71,16 @@ class vidCourse extends courses {
              return false;
         }
 
+    }
+    // delete course
+    function deleteCourse($id){
+        try {
+            $delete = $this -> connection -> prepare("DELETE FROM courses where course_id = ? and course_type = 'video'");
+        $delete ->  execute([$id]);
+        return true;
+        } catch (Exception) {
+            return false;
+        }
     }
 }
 ?>

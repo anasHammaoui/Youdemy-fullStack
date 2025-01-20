@@ -9,7 +9,7 @@ INNER JOIN categories ON categories.category_id = courses.category_id
 left JOIN coursTags ON coursTags.course_id = courses.course_id
 left JOIN tags ON tags.tag_id = coursTags.tag_id
 WHERE ((tags.tag_name LIKE :search or :emptySearch is null)  AND course_type = 'document')
-LIMIT 2 OFFSET :offset");
+LIMIT 4 OFFSET :offset");
         $searchLike = "%$search%";
         $getAllDocCourses -> bindValue(":search",$searchLike);
         $getAllDocCourses -> bindValue(":emptySearch",$search);
@@ -18,6 +18,12 @@ LIMIT 2 OFFSET :offset");
         $getAllDocCourses -> execute();
         $getDocs = $getAllDocCourses -> fetchAll(PDO::FETCH_ASSOC);
         return $getDocs;
+    }
+    // total video courses 
+    function total_docCourses(){
+        $total = $this -> connection -> prepare("SELECT COUNT(course_id) as total_docs from courses where course_type = 'document'");
+        $total -> execute();
+        return $total -> fetch(PDO::FETCH_ASSOC);
     }
      // course details
      public function getCourseDetails($course_id){
@@ -67,6 +73,16 @@ LIMIT 2 OFFSET :offset");
              return false;
         }
 
+    }
+    // delete course
+    function deleteCourse($id){
+        try {
+            $delete = $this -> connection -> prepare("DELETE FROM courses where course_id = ? and course_type = 'document'");
+        $delete ->  execute([$id]);
+        return true;
+        } catch (Exception) {
+            return false;
+        }
     }
 }
 ?>
