@@ -51,6 +51,16 @@
             return false;
         }
     }
+    // decline enrollement
+    function declineEnroll($enrollId){
+        try {
+            $decline = $this -> connection -> prepare("DELETE FROM enrollement where enroll_id = ?");
+            $decline -> execute([$enrollId]);
+            return true;
+        } catch (Exception){
+            return false;
+        }
+    }
 }
 
 ?>

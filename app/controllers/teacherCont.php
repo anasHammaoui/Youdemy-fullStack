@@ -37,5 +37,18 @@
             }
         }
     }
+    // decline enrollement
+    function declineEnroll(){
+        if ($_SESSION["user_role"] === "teacher"){
+            // accept enrollement
+            if($this -> teacherModel -> declineEnroll((int)$_GET["id"])){
+                header("location:/courseStudents");
+                exit();
+            } else {
+                echo "failed to decline";
+                echo "<a href='teacher'>go back</a>";
+            }
+        }
+    }
     }
 ?>
