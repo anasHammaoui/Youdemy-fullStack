@@ -83,7 +83,7 @@
                     foreach($tags as $tag){
                         $this ->adminModel-> addTags($tag);
                     }
-                $this -> showTags();
+                header("location:/adminTags");
             }
             }
 

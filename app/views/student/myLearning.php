@@ -27,7 +27,10 @@
             <div class="space-y-6">
                 <!-- Courses -->
                 <?php
-                    foreach($myEnrolls as $enroll) { ?>
+                    foreach($myEnrolls as $enroll) {
+                            if ($enroll["enroll_status"] === "accepted") {
+                        ?>
+                    
                     <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="w-full md:w-64 flex-shrink-0">
@@ -56,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                 <?php   }
+                 <?php   }}
                 ?>
             </div>
         </div>

@@ -42,7 +42,7 @@
         }
         // add courses for teachers
         public function addCourse(){
-            if (isset($_GET["addCourse"])){
+            if (isset($_GET["addCourse"]) && $_SESSION["user_role"] === "teacher"){
                 $name = $this -> validateInputs($_GET["courseName"]);
                 $type = $this -> validateInputs($_GET["courseType"]);
                 $category = $this -> validateInputs($_GET["courseCat"]);
@@ -68,7 +68,7 @@
         }
     //   edit courses for teachers
         function editCourse(){
-            if (isset($_GET["editCourse"])){
+            if (isset($_GET["editCourse"]) && $_SESSION["user_role"] === "teacher"){
                 $name = $this -> validateInputs($_GET["editName"]);
                 $type = $this -> validateInputs($_GET["editType"]);
                 $category = $this -> validateInputs($_GET["editCat"]);

@@ -32,7 +32,8 @@
           if ($this -> authModel -> signUp($Name,$Email,$Password,$role)){
             header("location:/signin");
         } else {
-            echo "failed to sign up";
+            echo "failed to sign up: ";
+            echo "<a href='/signup'>Try again</a>";
           }
     
        }
@@ -56,10 +57,12 @@
                         header("location:/admin");
                     }
                 } else {
-                    echo "invalid password";
+                    echo "invalid password: ";
+                    echo "<a href='/signin'>Try again</a>"; 
                 }
             } else {
-                echo "invalid email";
+                echo "invalid email or inaccepted user : ";
+                echo "<a href='/signin'>Try again</a>";
             }
 
         }

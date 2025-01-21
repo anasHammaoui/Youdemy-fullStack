@@ -42,11 +42,13 @@
     }
     // login function 
     function checkEmailLogin($email){
-        $checkEmail = $this -> connection -> prepare("SELECT count(email) as count FROM users where email = ?");
+        $checkEmail = $this -> connection -> prepare("SELECT count(email) as count FROM users where email = ? and user_status = 'accepted'");
         $checkEmail -> execute([$email]);
         $count = $checkEmail -> fetch(PDO::FETCH_ASSOC);
         return $count["count"];
     }
+
+    // check passlogin
     function checkPassLogin($email){
         $checkEmail = $this -> connection -> prepare("SELECT user_password FROM users where email = ?");
         $checkEmail -> execute([$email]);
