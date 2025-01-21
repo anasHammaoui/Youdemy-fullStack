@@ -82,7 +82,7 @@
     }
     // get Categories
     public function getCategories() {
-        $get = $this->connection->prepare("SELECT * FROM categories");
+        $get = $this->connection->prepare("SELECT count(courses.course_id) as total_courses, categories.category_name,categories.category_id FROM categories left join courses on courses.category_id = categories.category_id GROUP BY categories.category_id");
         $get->execute();
         return $get->fetchAll(PDO::FETCH_ASSOC);
     }

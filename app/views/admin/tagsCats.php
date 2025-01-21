@@ -12,7 +12,7 @@
         include_once __dir__ ."/../partials/profileNav.php";
     ?>
     
-    <div class="flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row  lg:px-32">
         <!-- tags part -->
         <div class="tagsPart w-full">
             <!-- Header -->
@@ -121,6 +121,7 @@
                        <?php foreach ($categories as $cat): ?>
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
                             <?=$cat["category_name"]?>
+                            <h3 class="ml-2 inline-flex text-indigo-600 hover:text-indigo-900"><?=$cat["total_courses"]?></h3>
                             <a href="removeCat?id=<?=$cat["category_id"]?>" class="ml-2 inline-flex text-indigo-600 hover:text-indigo-900">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
                             </a>
