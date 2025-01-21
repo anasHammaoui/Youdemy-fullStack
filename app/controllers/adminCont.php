@@ -34,9 +34,10 @@
         function teachersRequests(){
             if($_SESSION["user_role"] === "admin") {
             $pendingTeachersDetails = $this->adminModel->getPendingTeachersDetails();
+            $acceptedTeacher = $this->adminModel->acceptedTeachers();
             $adminId = $_SESSION["user_id"];
             $data = $this->adminModel->getAdminData($adminId); 
-            $this->render('admin/teacherRequests', ["pteachers" => $pendingTeachersDetails, "admin" => $data,]);
+            $this->render('admin/teacherRequests', ["pteachers" => $pendingTeachersDetails, "admin" => $data,"acceptedTeachers" => $acceptedTeacher]);
             } else {
                 echo "please log in admin: ";
                 echo "<a href='signin'>Log in</a>";

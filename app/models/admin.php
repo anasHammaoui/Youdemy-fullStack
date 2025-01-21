@@ -57,5 +57,11 @@
         $reject = $this->connection->prepare("DELETE FROM users WHERE user_id = ?");
          $reject->execute([$id]);
     }
+    // show accepted teachers
+    public function acceptedTeachers() {
+        $accepted = $this->connection->prepare("SELECT full_name, email, user_id, user_status from users where user_status = 'accepted' and user_role = 'teacher'");
+         $accepted->execute();
+         return $accepted -> fetchAll(PDO::FETCH_ASSOC);
+    }
     }
 ?>

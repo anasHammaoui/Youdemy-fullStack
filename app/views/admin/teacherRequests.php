@@ -99,72 +99,26 @@
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Name</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Email</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Courses</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Join Date</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Status</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
-                            <tr class="hover:bg-gray-50">
+                            <?php
+                                foreach($acceptedTeachers as $accepted): ?>
+                                <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="h-10 w-10 flex-shrink-0">
-                                            <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                                <span class="text-blue-600 font-medium text-sm">JD</span>
-                                            </div>
-                                        </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">John Doe</div>
+                                            <div class="text-sm font-medium text-gray-900"><?=$accepted["full_name"]?></div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">john.doe@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">5 courses</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jan 15, 2024</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?=$accepted["email"]?></td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium"><?=$accepted["user_status"]?></span>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="h-10 w-10 flex-shrink-0">
-                                            <div class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
-                                                <span class="text-purple-600 font-medium text-sm">AS</span>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Alice Smith</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">alice.smith@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">3 courses</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Feb 1, 2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Active</span>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="h-10 w-10 flex-shrink-0">
-                                            <div class="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
-                                                <span class="text-orange-600 font-medium text-sm">RJ</span>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Robert Johnson</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">robert.j@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">7 courses</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dec 20, 2023</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Active</span>
-                                </td>
-                            </tr>
+                           <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
