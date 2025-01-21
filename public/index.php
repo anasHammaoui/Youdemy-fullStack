@@ -43,6 +43,8 @@ Route::get('/removeTag',[adminCont::class,'deleteTag']);
 Route::get('/addTags',[adminCont::class,'addTags']);
 Route::get('/addCat',[adminCont::class,'addCategories']);
 Route::get('/removeCat',[adminCont::class,'deleteCat']);
+Route::get('/users',[adminCont::class,'allUsers']);
+Route::get('/deleteUser',[adminCont::class,'deleteUser']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 

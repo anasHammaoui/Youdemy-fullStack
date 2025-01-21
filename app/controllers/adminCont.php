@@ -113,6 +113,19 @@
             }
 
         }
-
+        function allUsers(){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
+                $allUsers = $this -> adminModel -> allUsers();
+                $id = $_SESSION["user_id"];
+                $data = $this->adminModel->getAdminData($id);
+                $this -> render("admin/allUsers",["allUsers"=>$allUsers, "admin"=> $data]);
+            }
+        }
+        function deleteUser(){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
+                $this -> adminModel -> deleteUser((int)$_GET["id"]);
+                $this -> allUsers();
+            }
+        }
     }
 ?>

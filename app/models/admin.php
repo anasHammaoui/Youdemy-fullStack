@@ -101,5 +101,16 @@
             $insert -> execute([$cat]);
             return;
     }
+    // show all users
+    function allUsers(){
+        $users = $this->connection->prepare("SELECT user_id, full_name, user_status, user_role,email FROM users where user_role != 'admin'");
+        $users->execute();
+        return $users->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // delete user
+    function deleteUser($id){
+        $delete = $this -> connection -> prepare("DELETE FROM users where user_id = ?");
+        $delete -> execute([$id]);
+    }
     }
 ?>
