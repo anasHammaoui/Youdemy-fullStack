@@ -13,7 +13,7 @@
             $countEmails = $checkExist -> fetch(PDO::FETCH_ASSOC);
             if ($countEmails["count"] === 0){
                     // Prepare and execute the insertion query
-                    $result = $this->connection->prepare("INSERT INTO users (full_name, email, user_password, user_role) VALUES (?, ?, ?, ?)");
+                    $result = $this->connection->prepare("INSERT INTO users (full_name, email, user_password, user_role, user_status) VALUES (?, ?, ?, ?, 'active')");
                     $result->execute([$Name,$Email,$Password,$role]);     
                 return true;
             } else {
@@ -25,9 +25,15 @@
             $countEmails = $checkExist -> fetch(PDO::FETCH_ASSOC);
             if ($countEmails["count"] === 0){
                     // Prepare and execute the insertion query
+                   if ($role === "teacher") {
+                    $result = $this->connection->prepare("INSERT INTO users (full_name, email, user_password, user_role, user_status) VALUES (?, ?, ?, ?, 'pending')");
+                    $result->execute([$Name,$Email,$Password,$role]);
+                    return true;
+                   } else {
                     $result = $this->connection->prepare("INSERT INTO users (full_name, email, user_password, user_role) VALUES (?, ?, ?, ?)");
                     $result->execute([$Name,$Email,$Password,$role]);
-                return true;
+                    return true;
+                   }
             } else {
                 return false;
             }

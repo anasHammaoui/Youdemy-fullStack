@@ -37,7 +37,7 @@
     }
     //  get top three teachers
     public function topThreeTeachers(){
-        $topTeachers = $this->connection->prepare("SELECT COUNT(courses.course_id) AS total_courses, users.full_name FROM courses JOIN users ON courses.teacher_id = users.user_id GROUP BY users.full_name ORDER BY total_courses DESC LIMIT 3");
+        $topTeachers = $this->connection->prepare("SELECT COUNT(courses.course_id) AS total_courses, users.full_name FROM courses JOIN users ON courses.teacher_id = users.user_id where user_status = 'accepted' GROUP BY users.full_name ORDER BY total_courses DESC LIMIT 3");
         $topTeachers->execute();
         return $topTeachers->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -62,6 +62,23 @@
         $accepted = $this->connection->prepare("SELECT full_name, email, user_id, user_status from users where user_status = 'accepted' and user_role = 'teacher'");
          $accepted->execute();
          return $accepted -> fetchAll(PDO::FETCH_ASSOC);
+    }
+    // get tags
+    public function getTags() {
+        $get = $this->connection->prepare("SELECT * FROM tags");
+        $get->execute();
+        return $get->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // delete tag
+    public function deleteTag($id) {
+        $delete = $this->connection->prepare("DELETE FROM tags WHERE tag_id = ?");
+        return $delete->execute([$id]);
+    }
+    // add tags to db
+    function addTags($tag){
+            $insert = $this -> connection -> prepare("INSERT INTO tags(tag_name) values (?)");
+            $insert -> execute([$tag]);
+            return;
     }
     }
 ?>

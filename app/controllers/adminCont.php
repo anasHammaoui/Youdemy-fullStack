@@ -57,5 +57,37 @@
                 echo "<a href='signin'>Log in</a>";
             }
         }
+        // show tags
+        function showTags(){
+            if ($_SESSION["user_role"] === "admin"){
+                $id = $_SESSION["user_id"];
+            $data = $this->adminModel->getAdminData($id);
+            $tags = $this->adminModel->getTags();
+            $this -> render("admin/adminTags",[ "admin" => $data,"tags" => $tags]);
+            }
+        }
+        // delete tags
+        public function deleteTag() {
+            if ($_SESSION["user_role"] === "admin"){
+
+        $id = $_GET["id"];
+        $this->adminModel->deleteTag($id);
+        $this -> showTags();
+            }
+        }
+        // add tags
+        public function addTags(){
+            if ($_SESSION["user_role"] === "admin"){
+               if (isset($_GET["addTags"])){
+                $tags = explode(",",$_GET["tags"]);
+                    foreach($tags as $tag){
+                        $this ->adminModel-> addTags($tag);
+                    }
+                $this -> showTags();
+            }
+            }
+
+        }
+
     }
 ?>
