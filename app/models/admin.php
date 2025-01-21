@@ -80,5 +80,26 @@
             $insert -> execute([$tag]);
             return;
     }
+    // get Categories
+    public function getCategories() {
+        $get = $this->connection->prepare("SELECT * FROM categories");
+        $get->execute();
+        return $get->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // delete category
+    public function deleteCat($id) {
+       try {
+        $delete = $this->connection->prepare("DELETE FROM categories WHERE category_id = ?");
+        $delete->execute([$id]);
+       } catch (Exception){
+        echo "<script>alert('failed to delete, category has courses')</script>";
+       }
+    }
+    // add Categories to db
+    function addCategories($cat){
+            $insert = $this -> connection -> prepare("INSERT INTO categories(category_name) values (?)");
+            $insert -> execute([$cat]);
+            return;
+    }
     }
 ?>

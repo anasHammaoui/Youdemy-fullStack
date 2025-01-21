@@ -11,10 +11,10 @@
                <?php
                 if ($_SESSION["user_role"] === "teacher" || $_SESSION["user_role"] === "student"){?>
                      <div class="flex items-center space-x-4">
-                    <button class="flex items-center text-gray-600 hover:text-gray-900">
+                    <a href="/myLearning" class="flex items-center text-gray-600 hover:text-gray-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <span class="ml-2"><?= $_SESSION["full_name"] ?></span>
-                    </button>
+                    </a>
 
                    <a href="logout" class="flex items-center text-gray-600 hover:text-gray-900">
                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -26,11 +26,11 @@
                 </div>
                <?php } elseif ($_SESSION["user_role"] === "admin"){?>
                 <div class="flex items-center space-x-4">
-                   <a href="adminTags" class="flex items-center text-gray-600 hover:text-gray-900">Tags Management</a>  
-                    <button class="flex items-center text-gray-600 hover:text-gray-900">
+                   <a href="tagsCats" class="flex items-center text-gray-600 hover:text-gray-900">Management</a>  
+                    <a href="/admin" class="flex items-center text-gray-600 hover:text-gray-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <span class="ml-2"><?= $_SESSION["full_name"] ?></span>
-                    </button>
+                    </a>
 
                    <a href="logout" class="flex items-center text-gray-600 hover:text-gray-900">
                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

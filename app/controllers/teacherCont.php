@@ -1,5 +1,5 @@
 <?php
-    class teacherCont extends BaseController{
+    class teacherCont extends authController{
         private $teacherModel;
         public function __construct(){
             $this -> teacherModel = new teacher();

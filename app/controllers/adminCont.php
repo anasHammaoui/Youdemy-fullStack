@@ -1,5 +1,5 @@
 <?php
-    class adminCont extends BaseController{
+    class adminCont extends authController{
         private $adminModel;
         public function __construct(){
             $this -> adminModel = new admin();
@@ -7,7 +7,7 @@
         // admin dashboard
         public function dashboard(){
             
-            if($_SESSION["user_role"] === "admin") {
+            if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin") {
                 $adminId = $_SESSION["user_id"];
                 $data = $this->adminModel->getAdminData($adminId); 
                 $numCourses = $this->adminModel->getCoursesNum();
@@ -32,7 +32,7 @@
         }
         // teachers requests
         function teachersRequests(){
-            if($_SESSION["user_role"] === "admin") {
+            if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin") {
             $pendingTeachersDetails = $this->adminModel->getPendingTeachersDetails();
             $acceptedTeacher = $this->adminModel->acceptedTeachers();
             $adminId = $_SESSION["user_id"];
@@ -44,7 +44,7 @@
             }
         }
         function teachersStatus(){
-            if ($_SESSION["user_role"] === "admin") {
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin") {
                 if (isset($_GET["type"]) && $_GET["type"] === "accept"){
                     $this -> adminModel -> approveTeacher((int)$_GET["id"]);
                     $this-> teachersRequests();
@@ -57,33 +57,58 @@
                 echo "<a href='signin'>Log in</a>";
             }
         }
-        // show tags
-        function showTags(){
-            if ($_SESSION["user_role"] === "admin"){
+          // show Categories and tags
+          function showCatsTags(){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
                 $id = $_SESSION["user_id"];
             $data = $this->adminModel->getAdminData($id);
+            // get categories
+            $categories = $this->adminModel->getCategories();
+            // :get tags 
             $tags = $this->adminModel->getTags();
-            $this -> render("admin/adminTags",[ "admin" => $data,"tags" => $tags]);
+            // render tags and categories to view 
+            $this -> render("admin/tagsCats",[ "admin" => $data,"categories" => $categories, "tags" => $tags]);
             }
         }
         // delete tags
         public function deleteTag() {
-            if ($_SESSION["user_role"] === "admin"){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
 
         $id = $_GET["id"];
         $this->adminModel->deleteTag($id);
-        $this -> showTags();
+        $this -> showCatsTags();
             }
         }
         // add tags
         public function addTags(){
-            if ($_SESSION["user_role"] === "admin"){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
                if (isset($_GET["addTags"])){
                 $tags = explode(",",$_GET["tags"]);
                     foreach($tags as $tag){
                         $this ->adminModel-> addTags($tag);
                     }
-                header("location:/adminTags");
+                header("location:/tagsCats");
+            }
+            }
+
+        }
+     
+        // delete categories
+        public function deleteCat() {
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
+
+        $id = $_GET["id"];
+        $this->adminModel->deleteCat($id);
+        $this -> showCatsTags();
+            }
+        }
+        // add categories
+        public function addCategories(){
+            if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin"){
+               if (isset($_GET["addCat"])){
+                $cat = $_GET["add-category"];
+                        $this ->adminModel-> addCategories($cat);
+                header("location:/tagsCats");
             }
             }
 

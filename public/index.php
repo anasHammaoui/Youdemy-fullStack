@@ -38,9 +38,11 @@ Route::get('/declineStudent',[teacherCont::class,'declineEnroll']);
 Route::get('/admin',[adminCont::class,'dashboard']);
 Route::get('/teacherRequests',[adminCont::class,'teachersRequests']);
 Route::get('/status',[adminCont::class,'teachersStatus']);
-Route::get('/adminTags',[adminCont::class,'showTags']);
+Route::get('/tagsCats',[adminCont::class,'showCatsTags']);
 Route::get('/removeTag',[adminCont::class,'deleteTag']);
 Route::get('/addTags',[adminCont::class,'addTags']);
+Route::get('/addCat',[adminCont::class,'addCategories']);
+Route::get('/removeCat',[adminCont::class,'deleteCat']);
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 

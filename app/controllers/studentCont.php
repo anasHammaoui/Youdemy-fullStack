@@ -1,5 +1,5 @@
 <?php
-    class studentCont extends BaseController{
+    class studentCont extends authController{
         private $student;
         private $vidCourses;
         private $docCourses;
@@ -21,8 +21,11 @@
         $myEnrolls = [];
         if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "student") {
         $myEnrolls = $this -> student -> getMyEnrolls((int)$_SESSION["user_id"]);
+        $this -> render("student/myLearning", ["myEnrolls" => $myEnrolls]);
+    } else {
+        echo "please log in dear student: ";
+        echo "<a href='signin'>Login</a>";
     }
-    $this -> render("student/myLearning", ["myEnrolls" => $myEnrolls]);
 }
     public function courseDetails(){
         $courseId = $_GET["course"];
@@ -35,6 +38,9 @@
                 $details = $this -> vidCourses -> getCourseDetails((int)$courseId);
             }
             $this -> render("student/coursePage",["details" => $details]);
+        } else {
+            echo "please log in dear student: ";
+            echo "<a href='signin'>Login</a>";
         }
     }
     }
