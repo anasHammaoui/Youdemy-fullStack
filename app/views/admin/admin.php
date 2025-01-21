@@ -109,7 +109,9 @@
                 </div>
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-xl font-bold text-gray-900 mb-6">Most Popular Course</h3>
-                    <div class="rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
+                    <?php
+                        if ($topCourse) {?>
+                            <div class="rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
                         <img src="<?= $topCourse["thumbnail"]; ?>" alt="<?= $topCourse["course_name"];?>" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg text-gray-900 mb-2"><?= $topCourse["course_name"];?></h3>
@@ -118,6 +120,8 @@
                             </div>
                         </div>
                     </div>
+                      <?php  }
+                    ?>
                 </div>
             </div>
         </main>

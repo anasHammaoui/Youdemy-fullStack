@@ -90,7 +90,7 @@
              <!-- pagination  -->
              <div class="pagination text-center w-full mt-2">
             <?php
-        $total_pages = ceil($total_vids["total_vids"]/ 4);
+        $total_pages = ceil((int)$total_vids["total_vids"] / 4);
         $currentPage = isset($_GET['vidPage']) ? (int)$_GET['vidPage'] : 1; 
         for ($i = 1; $i <= $total_pages; $i++) {
             $is_active = ($i == $currentPage) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-300';

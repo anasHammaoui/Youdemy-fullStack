@@ -11,7 +11,7 @@
     // student courses
     public function getMyEnrolls($idUser)
     {
-        $myCourses = $this->connection->prepare("SELECT * FROM courses inner join enrollement inner join users inner join categories WHERE enrollement.student_id=? and courses.course_id = enrollement.course_id and courses.teacher_id = users.user_id ");
+        $myCourses = $this->connection->prepare("SELECT enrollement.enroll_status, enrollement.enroll_date, courses.course_name,courses.thumbnail, courses.course_id, courses.course_type, categories.category_name, users.full_name, courses.course_cdn from enrollement inner join courses on courses.course_id = enrollement.course_id inner join categories on categories.category_id = courses.category_id inner join users on users.user_id = courses.teacher_id where enrollement.student_id = ?");
         $myCourses->execute([$idUser]);
         return $myCourses->fetchAll(PDO::FETCH_ASSOC);
     }

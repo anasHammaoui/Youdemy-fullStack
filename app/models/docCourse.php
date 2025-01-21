@@ -60,6 +60,8 @@ LIMIT 4 OFFSET :offset");
             // insert course in courses table
             $addToCourse = $this -> connection -> prepare("UPDATE COURSES SET course_name = ? ,course_type = 'document',teacher_id = ?,category_id = ?, course_desc = ? ,thumbnail = ?,course_cdn = ? where course_id = ?");
             $addToCourse -> execute([$name,(int)$teacher,(int)$catId,$desc,$thumb,$cdn,$id]);
+            $delOldTags = $this -> connection -> prepare("DELETE FROM coursTags where course_id = ?");
+            $delOldTags -> execute([$id]);
             // insert tags in tags table
             foreach($tags as $tag){
                 $tag = (int)$tag;
@@ -68,7 +70,7 @@ LIMIT 4 OFFSET :offset");
             }
             $this -> connection -> commit();
             return true;
-        } catch(Exception ){
+        } catch(Exception $e){
             $this -> connection -> rollBack();
              return false;
         }

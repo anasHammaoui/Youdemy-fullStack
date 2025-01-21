@@ -19,7 +19,7 @@ class vidCourse extends courses {
             return $getDocs;
     }
     function total_vidCourses(){
-        $total = $this -> connection -> prepare("SELECT COUNT(course_id) as total_vids from courses where course_type = 'document'");
+        $total = $this -> connection -> prepare("SELECT COUNT(course_id) as total_vids from courses where course_type = 'video'");
         $total -> execute();
         return $total -> fetch(PDO::FETCH_ASSOC);
     }
@@ -58,6 +58,8 @@ class vidCourse extends courses {
             // insert course in courses table
             $addToCourse = $this -> connection -> prepare("UPDATE COURSES SET course_name = ? ,course_type = 'video',teacher_id = ?,category_id = ?, course_desc = ? ,thumbnail = ?,course_cdn = ? where course_id = ?");
             $addToCourse -> execute([$name,(int)$teacher,(int)$catId,$desc,$thumb,$cdn,$id]);
+            $delOldTags = $this -> connection -> prepare("DELETE FROM coursTags where course_id = ?");
+            $delOldTags -> execute([$id]);
             // insert tags in tags table
             foreach($tags as $tag){
                 $tag = (int)$tag;
